@@ -10,15 +10,6 @@ In The 34th British Machine Vision Conference, 20th - 24th November 2023, Aberde
 
 ## :bookmark_tabs: Citation
 ```
-@misc{trinh2023metapolyp,
-      title={Meta-Polyp: a baseline for efficient Polyp segmentation}, 
-      author={Quoc-Huy Trinh},
-      year={2023},
-      eprint={2305.07848},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV}
-}
-
 @inproceedings{Nguyen_2023_BMVC,
 author    = {Quang Vinh Nguyen and Van Thong Huynh and Soo-Hyung Kim},
 title     = {Adaptation of Distinct Semantics for Uncertain Areas in Polyp Segmentation},
