@@ -8,6 +8,20 @@ ADSNet:  Adaptation of Distinct Semantic for Uncertain Areas in Polyp Segmentati
 
 In The 34th British Machine Vision Conference, 20th - 24th November 2023, Aberdeen, UK.
 
+### Training:
+For training, run ```python train.py ```
+### Testing:
+
+For Kvasir dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name kvasir```
+
+For CVC-Clinic dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name clinic```
+
+For CVC-ColonDB dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name colon```
+
+For ETIS dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name etis```
+
+For CVC-300 dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name cvc300```
+
 ## :bookmark_tabs: Citation
 ```
 @inproceedings{Nguyen_2023_BMVC,
