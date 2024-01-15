@@ -6,6 +6,5 @@ ADSNet:  Adaptation of Distinct Semantic for Uncertain Areas in Polyp Segmentati
 
 <b>Author:</b> <b>Quang-Vinh Nguyen, Van-Thong Huynh, Soo-Hyung Kim</b>
 
-In The 34th British Machine Vision Conference.
+In The 34th British Machine Vision Conference, 20th - 24th November 2023, Aberdeen, UK.
 
-Detail of each model modules can be found in original paper. Please citation if you use our implementation for research purpose.
