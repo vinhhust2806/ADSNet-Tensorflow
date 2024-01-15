@@ -8,6 +8,20 @@ Official Tensorflow implementation of [ADSNet: Adaptation of Distinct Semantic f
 
 In The 34th British Machine Vision Conference, 20th - 24th November 2023, Aberdeen, UK.
 
+## Architecture
+
+<p align="center">
+<img src="architecture.jpg" width=100% height=40% 
+class="center">
+</p>
+
+## Qualitative Results
+
+<p align="center">
+<img src="qualitative.png" width=100% height=40% 
+class="center">
+</p>
+
 ### Training:
 For training, run ```python train.py ```
 ### Testing:
