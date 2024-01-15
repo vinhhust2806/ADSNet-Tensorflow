@@ -22,6 +22,17 @@ class="center">
 class="center">
 </p>
 
+## Usage:
+### Recommended environment:
+```
+Python 3.8
+Tensorflow 2.12.0
+```
+Please use ```pip install -r requirements.txt``` to install the dependencies.
+
+### Data preparation:
+Download the training and testing datasets [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing)/[Baidu Drive](https://pan.baidu.com/s/1BTgT27VxvOgKpHrigwm7Bw?) [code:sydz] and move them into 'polyp/' folder.
+
 ### Training:
 For training, run ```python train.py ```
 ### Testing:
