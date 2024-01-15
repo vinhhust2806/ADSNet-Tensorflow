@@ -1,8 +1,8 @@
 # ADSNet: Adaptation of Distinct Semantic for Uncertain Areas in Polyp Segmentation, BMVC 2023 
 
-This repo is the official implementation for paper:
-
-ADSNet:  Adaptation of Distinct Semantic for Uncertain Areas in Polyp Segmentation
+Official Tensorflow implementation of [ADSNet: Adaptation of Distinct Semantic for Uncertain Areas in Polyp Segmentation](https://proceedings.bmvc2023.org/806/) BMVC 2023. 
+ <br>
+<p>Chonnam National University</p>
 
 <b>Author:</b> <b>Quang-Vinh Nguyen, Van-Thong Huynh, Soo-Hyung Kim</b>
 
