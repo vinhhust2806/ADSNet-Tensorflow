@@ -47,6 +47,9 @@ For ETIS dataset testing, run ```python test.py --pretrain_path weight.hdf5 --te
 
 For CVC-300 dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name cvc300```
 
+### Visualize:
+run ```python visualize.py --pretrain_path weight.hdf5 --test_name kvasir```
+
 ### Image-level Polyp Segmentation Compared Results:
 We also provide some result of baseline methods, You could download from [Google Drive](https://drive.google.com/file/d/1xvjRl70pZbOO6wI5p94CSpZK2RAUnUnx/view?usp=sharing)/[Baidu Drive](https://pan.baidu.com/s/14HtaePQk46YFDH5jRQDhwQ?pwd=qw9i) [code:qw9i], including our results and that of compared models.
 
