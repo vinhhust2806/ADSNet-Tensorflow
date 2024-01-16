@@ -54,7 +54,7 @@ run ```python visualize.py --pretrain_path weight.hdf5 --test_name kvasir```
 We also provide some result of baseline methods, You could download from [Google Drive](https://drive.google.com/file/d/1xvjRl70pZbOO6wI5p94CSpZK2RAUnUnx/view?usp=sharing)/[Baidu Drive](https://pan.baidu.com/s/14HtaePQk46YFDH5jRQDhwQ?pwd=qw9i) [code:qw9i], including results of compared models.
 
 ## :bookmark_tabs: Citation
-```
+
 @inproceedings{Nguyen_2023_BMVC,
 author    = {Quang Vinh Nguyen and Van Thong Huynh and Soo-Hyung Kim},
 title     = {Adaptation of Distinct Semantics for Uncertain Areas in Polyp Segmentation},
@@ -63,4 +63,4 @@ publisher = {BMVA},
 year      = {2023},
 url       = {https://papers.bmvc2023.org/0806.pdf}
 }
-'''
+
