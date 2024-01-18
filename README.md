@@ -63,4 +63,3 @@ publisher = {BMVA},
 year      = {2023},
 url       = {https://papers.bmvc2023.org/0806.pdf}
 }
-
