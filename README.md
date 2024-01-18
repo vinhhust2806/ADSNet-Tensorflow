@@ -25,8 +25,8 @@ class="center">
 ## Usage:
 ### Recommended environment:
 ```
-Python 3.8
-Tensorflow 2.12.0
+python 3.9.13
+tensorflow-gpu 2.10.0
 ```
 Please use ```pip install -r requirements.txt``` to install the dependencies.
 
