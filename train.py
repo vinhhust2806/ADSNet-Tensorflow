@@ -24,21 +24,29 @@ def set_args():
   return parse.parse_args()
 
 if __name__ == '__main__':
+      #seed
       args = set_args()
       np.random.seed(args.seed)
       tf.random.set_seed(args.seed)
       random.seed(args.seed)
+
+      # load data
       train_gener, train = data_train(args)
       val_gener, test_gener, test = data_test(args)
-      model = model((args.image_size, args.image_size, args.input_channels), args)
-      opt = Adam(learning_rate = args.lr)                 
-      model.compile(optimizer=opt, loss=dice_loss, metrics=[dice,iou,precision,recall,f1])
-      callbacks = [ModelCheckpoint(args.encoder_name+'_'+ args.decoder_name+'.hdf5',monitor='val_dice',mode='max', verbose=1, save_best_only=True)
-                   ,ReduceLROnPlateau(monitor='val_dice',mode = 'max', factor=0.1,patience=args.patience, min_lr=args.min_lr)]
 
+      # initialize the model
+      model = model((args.image_size, args.image_size, args.input_channels), args)
+
+      # initialize training configuration
+      opt = Adam(learning_rate=args.lr)                 
+      model.compile(optimizer = opt, loss = dice_loss, metrics = [dice,iou,precision,recall,f1])
+      callbacks = [ModelCheckpoint(args.encoder_name+'_'+args.decoder_name+'.hdf5', monitor = 'val_dice', mode = 'max', verbose = 1, save_best_only = True)
+                   ,ReduceLROnPlateau(monitor = 'val_dice', mode = 'max', factor = 0.1, patience = args.patience, min_lr = args.min_lr)]
+
+      # train the model
       history = model.fit(train_gener,
-                    steps_per_epoch=len(train) / args.batch_size, 
-                    epochs=args.epoch,
+                    steps_per_epoch = len(train)/args.batch_size, 
+                    epochs = args.epoch,
                     callbacks = callbacks,
                     validation_data = test_gener,
-                    validation_steps= len(test))
+                    validation_steps = len(test))
