@@ -24,11 +24,7 @@ class="center">
 
 ## Usage:
 ### Recommended environment:
-```
-python 3.9.13
-tensorflow-gpu 2.10.0
-```
-Please use ```pip install -r requirements.txt``` to install the dependencies.
+Please use ```pip install -r requirements.txt``` to install the libraries.
 
 ### Data preparation:
 Download the training and testing datasets [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing) and move them into 'polyp/' folder.
