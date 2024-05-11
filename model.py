@@ -277,7 +277,7 @@ def model(shape, args):
 
   out2 = PartialDecoder(32,'out2')(a4_s1, a3_s1, a2_s1)
 
-  p1_s2 = Multiply()([Channel_attention(Spatial_attention)(p1),1-out_1_s2])   
+  p1_s2 = Multiply()([Channel_attention(Spatial_attention)(p1),1-out1_s2])   
   a2_s2 = Attention_block(p1_s2,a2)
   a3_s2 = Attention_block(a2_s2,a3)
   a4_s2 = Attention_block(a3_s2,a4)
