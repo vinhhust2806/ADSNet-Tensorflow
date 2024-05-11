@@ -34,21 +34,13 @@ Please use ```pip install -r requirements.txt``` to install the dependencies.
 Download the training and testing datasets [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing) and move them into 'polyp/' folder.
 
 ### Training:
-For training, run ```python train.py --epoch $epoch --batch_sise #batchsize --lr $learningrate --min_lr $min_learningrate --val_name $kvasir/clinic/colon/etis/endoscene ```
+For training, run ```python train.py --epoch $epoch --batch_sise #batch_size --lr $learning_rate --min_lr $min_learning_rate --val_name $kvasir/clinic/colon/etis/endoscene```
+
 ### Testing:
-
-For Kvasir dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name kvasir```
-
-For CVC-Clinic dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name clinic```
-
-For CVC-ColonDB dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name colon```
-
-For ETIS dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name etis```
-
-For EndoScene dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name cvc300```
+For testing, run ```python test.py --pretrain_path $pretrain_path --test_name $kvasir/clinic/colon/etis/endoscene```
 
 ### Visualize:
-run ```python visualize.py --pretrain_path weight.hdf5 --test_name kvasir```
+run ```python visualize.py --pretrain_path $pretrain_path --test_name $kvasir/clinic/colon/etis/endoscene```
 
 ### Polyp Segmentation Compared Results:
 We also provide some result of baseline methods, You could download from [Google Drive](https://drive.google.com/file/d/1xvjRl70pZbOO6wI5p94CSpZK2RAUnUnx/view?usp=sharing), including results of compared models.
