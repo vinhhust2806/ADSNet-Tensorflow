@@ -26,13 +26,22 @@ def set_args():
 
 if __name__ == '__main__':  
       args = set_args()
-      val_gener, test_gener, test_set = data_test(args)
-      opt = Adam(learning_rate = args.lr)                  
-      model = model((args.image_size, args.image_size, args.input_channels), args)
-      model.compile(optimizer=opt, loss=dice_loss, metrics=[dice,iou,precision,recall,f1])
-      model.load_weights(args.pretrain_path)
       
-      results = model.evaluate(test_gener, steps= len(test_set))
+      # Load data
+      val_gener, test_gener, test_set = data_test(args)
+      
+      # Initialize the model           
+      model = model((args.image_size, args.image_size, args.input_channels), args)
+
+      # Initialize the training configuration  
+      opt = Adam(learning_rate = args.lr)  
+      model.compile(optimizer=opt, loss=dice_loss, metrics=[dice,iou,precision,recall,f1])
+      
+      # Load weight
+      model.load_weights(args.pretrain_path)
+
+      # Evaluate test set on Dice, IoU, Precision, Recall, F1 Score.
+      results = model.evaluate(test_gener, steps = len(test_set))
       dice_score = 0 
       iou_score = 0
       precision_score = 0
@@ -44,7 +53,7 @@ if __name__ == '__main__':
         img = np.array(img) / 255.
         img = img.reshape(1,args.image_size, args.image_size,3).astype(np.float32)
         pred = model.predict(img).astype(np.float32)
-        mask = cv2.resize(cv2.imread(test_set['mask_path'].iloc[i],0),(args.image_size, args.image_size))
+        mask = cv2.resize(cv2.imread(test_set['mask_path'].iloc[i],0), (args.image_size, args.image_size))
         mask = np.array(mask) / 255.
         mask = mask>=0.5
         mask = mask.reshape(1,args.image_size, args.image_size,1)
@@ -54,8 +63,8 @@ if __name__ == '__main__':
         precision_score += precision(mask, pred)
         recall_score += recall(mask, pred)
         f1_score += f1(mask, pred)
-        
 
+      # Save evaluation results in file result.txt
       with open('result.txt', 'w') as f:
           f.write(str({'test_name':args.test_name, 'image_size':args.image_size, 'batch_size':args.batch_size, 'epoch': args.epoch, 'learning_rate': args.lr,'min_lr': args.min_lr,'patience':args.patience, 'encoder_name': args.encoder_name, 'decoder_name': args.decoder_name}))
           f.write('\n')
