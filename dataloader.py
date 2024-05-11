@@ -106,7 +106,7 @@ def data_test(args):
         mask_path.sort()
         test['image_path'] = image_path
         test['mask_path'] = mask_path
-    if args.test_name == 'cvc300':
+    if args.test_name == 'endoscene':
         test = pd.DataFrame()
         image_path = glob.glob(polyp\TestDataset\CVC-300\images\*')
         image_path.sort()
