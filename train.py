@@ -24,26 +24,26 @@ def set_args():
   return parse.parse_args()
 
 if __name__ == '__main__':
-      #seed
+      # Initialize the seed
       args = set_args()
       np.random.seed(args.seed)
       tf.random.set_seed(args.seed)
       random.seed(args.seed)
 
-      # load data
+      # Load data
       train_gener, train = data_train(args)
       val_gener, test_gener, test = data_test(args)
 
-      # initialize the model
+      # Initialize the model
       model = model((args.image_size, args.image_size, args.input_channels), args)
 
-      # initialize training configuration
+      # Initialize training configuration
       opt = Adam(learning_rate=args.lr)                 
       model.compile(optimizer = opt, loss = dice_loss, metrics = [dice,iou,precision,recall,f1])
       callbacks = [ModelCheckpoint(args.encoder_name+'_'+args.decoder_name+'.hdf5', monitor = 'val_dice', mode = 'max', verbose = 1, save_best_only = True)
                    ,ReduceLROnPlateau(monitor = 'val_dice', mode = 'max', factor = 0.1, patience = args.patience, min_lr = args.min_lr)]
 
-      # train the model
+      # Train the model
       history = model.fit(train_gener,
                     steps_per_epoch = len(train)/args.batch_size, 
                     epochs = args.epoch,
