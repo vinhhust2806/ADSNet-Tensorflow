@@ -9,8 +9,8 @@ import argparse
 def set_args():
   parse = argparse.ArgumentParser()
   parse.add_argument('--image_size', type = int, default = 256, help = 'image size')
-  parse.add_argument('--train_image_path', type = str, default = 'C:\medical_image_segmentation\polyp\TrainDataset\images\*', help = 'train_image_path')
-  parse.add_argument('--train_mask_path', type = str, default = 'C:\medical_image_segmentation\polyp\TrainDataset\masks\*', help = 'train_mask_path')
+  parse.add_argument('--train_image_path', type = str, default = 'polyp\TrainDataset\images\*', help = 'train_image_path')
+  parse.add_argument('--train_mask_path', type = str, default = 'polyp\TrainDataset\masks\*', help = 'train_mask_path')
   parse.add_argument('--test_name', type = str, default = 'kvasir', help = 'test data')
   parse.add_argument('--epoch', type = int, default = 200, help = 'epoch')
   parse.add_argument('--lr', type = float, default = 1e-4, help = 'lr')
