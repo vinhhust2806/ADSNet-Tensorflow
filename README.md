@@ -34,7 +34,7 @@ Please use ```pip install -r requirements.txt``` to install the dependencies.
 Download the training and testing datasets [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing) and move them into 'polyp/' folder.
 
 ### Training:
-For training, run ```python train.py ```
+For training, run ```python train.py --epoch $epoch --batch_sise #batchsize --lr $learningrate --min_lr $min_learningrate --val_name $kvasir/clinic/colon/etis/endoscene ```
 ### Testing:
 
 For Kvasir dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name kvasir```
