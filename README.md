@@ -31,7 +31,7 @@ tensorflow-gpu 2.10.0
 Please use ```pip install -r requirements.txt``` to install the dependencies.
 
 ### Data preparation:
-Download the training and testing datasets [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing)/[Baidu Drive](https://pan.baidu.com/s/1BTgT27VxvOgKpHrigwm7Bw?) [code:sydz] and move them into 'polyp/' folder.
+Download the training and testing datasets [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing) and move them into 'polyp/' folder.
 
 ### Training:
 For training, run ```python train.py ```
@@ -51,7 +51,7 @@ For CVC-300 dataset testing, run ```python test.py --pretrain_path weight.hdf5 -
 run ```python visualize.py --pretrain_path weight.hdf5 --test_name kvasir```
 
 ### Polyp Segmentation Compared Results:
-We also provide some result of baseline methods, You could download from [Google Drive](https://drive.google.com/file/d/1xvjRl70pZbOO6wI5p94CSpZK2RAUnUnx/view?usp=sharing)/[Baidu Drive](https://pan.baidu.com/s/14HtaePQk46YFDH5jRQDhwQ?pwd=qw9i) [code:qw9i], including results of compared models.
+We also provide some result of baseline methods, You could download from [Google Drive](https://drive.google.com/file/d/1xvjRl70pZbOO6wI5p94CSpZK2RAUnUnx/view?usp=sharing), including results of compared models.
 
 ## :bookmark_tabs: Citation
 ```
