@@ -45,7 +45,7 @@ For CVC-ColonDB dataset testing, run ```python test.py --pretrain_path weight.hd
 
 For ETIS dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name etis```
 
-For CVC-300 dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name cvc300```
+For EndoScene dataset testing, run ```python test.py --pretrain_path weight.hdf5 --test_name cvc300```
 
 ### Visualize:
 run ```python visualize.py --pretrain_path weight.hdf5 --test_name kvasir```
