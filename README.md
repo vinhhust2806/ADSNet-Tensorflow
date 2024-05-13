@@ -30,13 +30,13 @@ Please use ```pip install -r requirements.txt``` to install the libraries.
 Download the training and testing datasets [Google Drive](https://drive.google.com/file/d/1pFxb9NbM8mj_rlSawTlcXG1OdVGAbRQC/view?usp=sharing) and move them into 'polyp/' folder.
 
 ### Training:
-For training, run ```python train.py --epoch $epoch --batch_sise #batch_size --lr $learning_rate --min_lr $min_learning_rate --val_name $kvasir/clinic/colon/etis/endoscene```
+Run ```python train.py --epoch $epoch --batch_sise #batch_size --lr $learning_rate --min_lr $min_learning_rate --val_name $kvasir/clinic/colon/etis/endoscene```
 
 ### Testing:
-For testing, run ```python test.py --pretrain_path $pretrain_path --test_name $kvasir/clinic/colon/etis/endoscene```
+Run ```python test.py --pretrain_path $pretrain_path --test_name $kvasir/clinic/colon/etis/endoscene```
 
 ### Visualize:
-run ```python visualize.py --pretrain_path $pretrain_path --test_name $kvasir/clinic/colon/etis/endoscene```
+Run ```python visualize.py --pretrain_path $pretrain_path --test_name $kvasir/clinic/colon/etis/endoscene```
 
 ### Polyp Segmentation Compared Results:
 We also provide some result of baseline methods, You could download from [Google Drive](https://drive.google.com/file/d/1xvjRl70pZbOO6wI5p94CSpZK2RAUnUnx/view?usp=sharing), including results of compared models.
