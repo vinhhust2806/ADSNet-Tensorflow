@@ -22,6 +22,20 @@ class="center">
 class="center">
 </p>
 
+## Contributions of Predicted Masks
+
+<p align="center">
+<img src="3_output.png" width=100% height=40% 
+class="center">
+</p>
+
+## Feature Maps
+
+<p align="center">
+<img src="feature_map.png" width=100% height=40% 
+class="center">
+</p>
+
 ## Usage:
 ### Recommended environment:
 Please use ```pip install -r requirements.txt``` to install the libraries.
