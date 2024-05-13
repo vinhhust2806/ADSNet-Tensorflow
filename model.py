@@ -220,16 +220,16 @@ class Encoder_backbone():
 
         self.is_trainable = is_trainable
         self.efficientnet_feature_extractor_layer_name = [                                     
-            'block2d_add',  # 256
-            'block4a_expand_activation',  # 512
-            'block6a_expand_activation',  # 1024
-            'top_activation',  # 2048
+            'block2d_add',  
+            'block4a_expand_activation', 
+            'block6a_expand_activation',  
+            'top_activation',  
         ]
         self.mobilenet_feature_extractor_layer_name = [
-            'block_3_expand_relu',  # 56x56x144
-            'block_6_expand_relu',  # 28x28x192
-            'block_13_expand_relu',  # 14x14x576
-            'out_relu',             # 7x7x1280
+            'block_3_expand_relu',  
+            'block_6_expand_relu',  
+            'block_13_expand_relu', 
+            'out_relu',             
         ]
         if self.model_architecture == 'efficientnet':
             self.backbone = tf.keras.applications.EfficientNetV2S(
