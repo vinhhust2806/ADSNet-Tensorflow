@@ -22,6 +22,7 @@ def set_args():
   parse.add_argument('--min_lr', type = float, default = 1e-7, help = 'min learning rate')
   parse.add_argument('--patience', type = int, default = 80, help = 'the number of patience')
   parse.add_argument('--input_channels', type = int, default = 3, help = 'the number of input channels')
+  parse.add_argument('--semantic_boundary', type = float, default = 1e-5, help = 'the threshold separate early prediction')
   return parse.parse_args()
 
 if __name__ == '__main__':  
