@@ -268,7 +268,7 @@ def model(shape, args):
   out1 = PartialDecoder(32,'out1')(a4, a3, a2)
 
   out1_s1 = tf.keras.layers.Resizing(args.image_size //4,args.image_size//4)(Activation('sigmoid')(out1))
-  out1_s2 = tf.cast(out1_s1>0.00001, dtype = tf.float32)
+  out1_s2 = tf.cast(out1_s1>args.semantic_boundary, dtype = tf.float32)
   
   p1_s1 = Multiply()([Channel_attention(Spatial_attention)(p1),1-out1_s1])   
   a2_s1 = Attention_block(p1_s1,a2)
