@@ -11,28 +11,28 @@ In The 34th British Machine Vision Conference, 20th - 24th November 2023, Aberde
 ## Architecture
 
 <p align="center">
-<img src="architecture.png" width=100% height=40% 
+<img src="architecture.png" width=50% height=40% 
 class="center">
 </p>
 
 ## Qualitative Results
 
 <p align="center">
-<img src="qualitative.png" width=100% height=40% 
+<img src="qualitative.png" width=50% height=40% 
 class="center">
 </p>
 
 ## Contributions of Predicted Masks
 
 <p align="center">
-<img src="3_output.png" width=100% height=40% 
+<img src="3_output.png" width=50% height=40% 
 class="center">
 </p>
 
 ## Feature Maps
 
 <p align="center">
-<img src="feature_map.png" width=100% height=40% 
+<img src="feature_map.png" width=50% height=40% 
 class="center">
 </p>
 
