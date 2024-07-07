@@ -8,11 +8,11 @@ import random
 
 def set_args():
   parse = argparse.ArgumentParser()
-  parse.add_argument('--image_size', type = int, default = 256, help = 'image size')
-  parse.add_argument('--train_image_path', type = str, default = 'polyp\TrainDataset\images\*', help = 'train_image_path')
-  parse.add_argument('--train_mask_path', type = str, default = 'polyp\TrainDataset\masks\*', help = 'train_mask_path')
+  parse.add_argument('--image_size', type = int, default = 352, help = 'image size')
+  parse.add_argument('--train_image_path', type = str, default = 'polyp/TrainDataset/images/*', help = 'train_image_path')
+  parse.add_argument('--train_mask_path', type = str, default = 'polyp/TrainDataset/masks/*', help = 'train_mask_path')
   parse.add_argument('--val_name', type = str, default = 'kvasir', help = 'name of val data')
-  parse.add_argument('--epoch', type = int, default = 400, help = 'epoch')
+  parse.add_argument('--epoch', type = int, default = 200, help = 'epoch')
   parse.add_argument('--lr', type = float, default = 1e-4, help = 'lr')
   parse.add_argument('--batch_size', type = int, default = 16, help = 'batch_size')
   parse.add_argument('--seed', type = int, default = 28, help = 'seed')
