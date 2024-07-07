@@ -74,27 +74,25 @@ def Attention_block(g, x):
     """
 
     filters = x.shape[-1]
-
-    g_conv = BatchNormalization()(g)
-    g_conv = Activation("relu")(g_conv)
-    g_conv = Conv2D(filters, (3, 3), padding="same")(g_conv)
-
+   
+    g_conv = Conv2D(filters, (1, 1), padding="same")(g)
+    g_conv = BatchNormalization()(g_conv)
     g_pool = MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(g_conv)
 
-    x_conv = BatchNormalization()(x)
-    x_conv = Activation("relu")(x_conv)
-    x_conv = Conv2D(filters, (3, 3), padding="same")(x_conv)
-
+    x_conv = Conv2D(filters, (1, 1), padding="same")(x)
+    x_conv = BatchNormalization()(x_conv)
+    
     gc_sum = Add()([g_pool, x_conv])
 
-    gc_conv = BatchNormalization()(gc_sum)
-    gc_conv = Activation("relu")(gc_conv)
-    gc_conv = Conv2D(filters, (3, 3), padding="same")(gc_conv)
-
+    gc_conv = Activation("relu")(gc_sum)
+    gc_conv = Conv2D(filters, (1, 1), padding="same")(gc_conv)
+    gc_conv = BatchNormalization()(gc_conv)
+    gc_conv = Activation("sigmoid")(gc_conv)
+    
     gc_mul = Multiply()([gc_conv, x])
     return gc_mul
   
-def Receptive_Field_Block(x, filter):
+def PASPP(x, filter):
   
   x1 = Conv2D(filter//4, (1,1), strides=1, kernel_initializer='he_normal', padding="same")(x)
   x1 = BatchNormalization()(x1)
@@ -150,7 +148,6 @@ def Receptive_Field_Block(x, filter):
   x3_4 = BatchNormalization()(x3_4)
   x3_4 = Activation("relu")(x3_4)
   
-
   y = Concatenate()([x1_2,x3_4])
   y = Conv2D(filter, (1,1), strides=1, kernel_initializer='he_normal', padding="same")(y)
   y = BatchNormalization()(y)
@@ -158,9 +155,9 @@ def Receptive_Field_Block(x, filter):
   
   return y
   
-class PartialDecoder(tf.keras.layers.Layer):
+class Decoder(tf.keras.layers.Layer):
     def __init__(self, filters: int, name:str):
-        super(PartialDecoder, self).__init__(name=name)
+        super(Decoder, self).__init__(name=name)
         self.filters = filters
 
         self.upsampling = tf.keras.layers.UpSampling2D(
@@ -261,28 +258,28 @@ def model(shape, args):
   p2 = features[1]
   p1 = features[0]
 
-  a4 = Receptive_Field_Block(p4,32)
-  a3 = Receptive_Field_Block(p3,32)
-  a2 = Receptive_Field_Block(p2,32)
+  a4 = PASPP(p4,32)
+  a3 = PASPP(p3,32)
+  a2 = PASPP(p2,32)
   
-  out1 = PartialDecoder(32,'out1')(a4, a3, a2)
+  out1 = Decoder(32,'out1')(a4, a3, a2)
 
-  out1_s1 = tf.keras.layers.Resizing(args.image_size //4,args.image_size//4)(Activation('sigmoid')(out1))
-  out1_s2 = tf.cast(out1_s1>args.semantic_boundary, dtype = tf.float32)
+  out1_s1 = tf.keras.layers.Resizing(args.image_size //4, args.image_size//4)(Activation('sigmoid')(out1))
+  out1_s2 = tf.cast(out1_s1 > args.semantic_boundary, dtype = tf.float32)
   
-  p1_s1 = Multiply()([Channel_attention(Spatial_attention)(p1),1-out1_s1])   
+  p1_s1 = Multiply()([Channel_attention(Spatial_attention)(p1) ,1-out1_s1])   
   a2_s1 = Attention_block(p1_s1,a2)
   a3_s1 = Attention_block(a2_s1,a3)
   a4_s1 = Attention_block(a3_s1,a4)
 
-  out2 = PartialDecoder(32,'out2')(a4_s1, a3_s1, a2_s1)
+  out2 = Decoder(32,'out2')(a4_s1, a3_s1, a2_s1)
 
   p1_s2 = Multiply()([Channel_attention(Spatial_attention)(p1),1-out1_s2])   
   a2_s2 = Attention_block(p1_s2,a2)
   a3_s2 = Attention_block(a2_s2,a3)
   a4_s2 = Attention_block(a3_s2,a4)
 
-  out3 = PartialDecoder(32,'out3')(a4_s2, a3_s2, a2_s2)
+  out3 = Decoder(32,'out3')(a4_s2, a3_s2, a2_s2)
   
   output1 = tf.keras.layers.Resizing(args.image_size, args.image_size, name='out_1')(out1)
   output2 = tf.keras.layers.Resizing(args.image_size, args.image_size, name='out_2')(out2)
