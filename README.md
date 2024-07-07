@@ -33,6 +33,13 @@ We also provide some result of baseline methods, You could download from [Google
 
 ## :bookmark_tabs: Citation
 ```
+@article{nguyen2024adaptation,
+  title={Adaptation of Distinct Semantics for Uncertain Areas in Polyp Segmentation},
+  author={Nguyen, Quang Vinh and Huynh, Van Thong and Kim, Soo-Hyung},
+  journal={arXiv preprint arXiv:2405.07523},
+  year={2024}
+}
+
 @inproceedings{Nguyen_2023_BMVC,
 author    = {Quang Vinh Nguyen and Van Thong Huynh and Soo-Hyung Kim},
 title     = {Adaptation of Distinct Semantics for Uncertain Areas in Polyp Segmentation},
@@ -41,3 +48,4 @@ publisher = {BMVA},
 year      = {2023},
 url       = {https://papers.bmvc2023.org/0806.pdf}
 }
+```
