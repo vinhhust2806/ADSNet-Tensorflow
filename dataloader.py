@@ -8,7 +8,7 @@ def train_generator(data_frame, batch_size, aug_dict,
         image_save_prefix="image",
         mask_save_prefix="mask",
         save_to_dir=None,
-        target_size=256,
+        target_size=352,
         seed=28):
 
     image_datagen = ImageDataGenerator(**aug_dict)
