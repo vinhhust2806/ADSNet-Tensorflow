@@ -8,7 +8,7 @@ import argparse
 
 def set_args():
   parse = argparse.ArgumentParser()
-  parse.add_argument('--image_size', type = int, default = 256, help = 'image size')
+  parse.add_argument('--image_size', type = int, default = 352, help = 'image size')
   parse.add_argument('--train_image_path', type = str, default = 'polyp\TrainDataset\images\*', help = 'train_image_path')
   parse.add_argument('--train_mask_path', type = str, default = 'polyp\TrainDataset\masks\*', help = 'train_mask_path')
   parse.add_argument('--test_name', type = str, default = 'kvasir', help = 'test data')
