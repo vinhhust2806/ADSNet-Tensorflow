@@ -68,11 +68,6 @@ def Channel_attention(inputs, ratio=8):
     return x
 
 def Attention_block(g, x):
-    """
-        g: Output of Parallel Encoder block
-        x: Output of Previous Decoder block
-    """
-
     filters = x.shape[-1]
    
     g_conv = Conv2D(filters, (1, 1), padding="same")(g)
@@ -206,15 +201,10 @@ class Decoder(tf.keras.layers.Layer):
         return super().from_config(config)
 
 class Encoder_backbone():
-    def __init__(self, model_architecture: str = 'efficientnet', inshape: tuple = (256, 256, 3), is_trainable: bool = True):
+    def __init__(self, model_architecture: str = 'efficientnet', inshape: tuple = (352, 352, 3), is_trainable: bool = True):
         self.inshape = inshape
-        self._supported_arch = ['efficientnet', 'mobilenetv2]
+        self._supported_arch = ['efficientnet']
         self.model_architecture = model_architecture
-        if self.model_architecture not in self._supported_arch:
-            tf.print(
-                f"Model Architecture should be one of {self._supported_arch}")
-            sys.exit()
-
         self.is_trainable = is_trainable
         self.efficientnet_feature_extractor_layer_name = [                                     
             'block2d_add',  
@@ -222,32 +212,19 @@ class Encoder_backbone():
             'block6a_expand_activation',  
             'top_activation',  
         ]
-        self.mobilenet_feature_extractor_layer_name = [
-            'block_3_expand_relu',  
-            'block_6_expand_relu',  
-            'block_13_expand_relu', 
-            'out_relu',             
-        ]
-        if self.model_architecture == 'efficientnet':
-            self.backbone = tf.keras.applications.EfficientNetV2S(
-                include_top=False, input_shape=self.inshape
-            )
-        if self.model_architecture == 'mobilenetv2':
-            self.backbone = MobileNetV2(
+        self.backbone = tf.keras.applications.EfficientNetV2S(
                 include_top=False, input_shape=self.inshape
             )
         self.backbone.trainable = self.is_trainable
 
     def get_fe_backbone(self) -> tf.keras.Model:
-
         layer_out = []
-        if self.model_architecture == 'efficientnet':
-            for layer_name in self.efficientnet_feature_extractor_layer_name:
+        for layer_name in self.efficientnet_feature_extractor_layer_name:
                 layer_out.append(self.backbone.get_layer(layer_name).output)
-    
+            
         fe_backbone_model = tf.keras.models.Model(
             inputs=self.backbone.input, outputs=layer_out, name='efficientnet')
-
+        
         return fe_backbone_model
       
 def model(shape, args):
