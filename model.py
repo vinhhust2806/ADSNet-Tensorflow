@@ -34,7 +34,7 @@ class ConvModule(tf.keras.layers.Layer):
         x = self.relu(x)
         return x
 
-def Spatial_attention(inputs, ratio=8):
+def Spatial_Attention(inputs, ratio=8):
     init = inputs
     se_shape = (init.shape[1],init.shape[2],1)
 
@@ -48,7 +48,7 @@ def Spatial_attention(inputs, ratio=8):
     se = Activation('sigmoid')(se)
     return se * inputs
 
-def Channel_attention(inputs, ratio=8):
+def Channel_Attention(inputs, ratio=8):
     init = inputs
     channel_axis = -1
     filters = init.shape[channel_axis]
@@ -67,7 +67,7 @@ def Channel_attention(inputs, ratio=8):
     x = Multiply()([init, Activation('sigmoid')(se+se_max)])
     return x
 
-def Attention_block(g, x):
+def Attention_Gate(g, x):
     filters = x.shape[-1]
    
     g_conv = Conv2D(filters, (1, 1), padding="same")(g)
@@ -244,14 +244,14 @@ def model(shape, args):
   out1_s1 = tf.keras.layers.Resizing(args.image_size //4, args.image_size//4)(Activation('sigmoid')(out1))
   out1_s2 = tf.cast(out1_s1 > args.semantic_boundary, dtype = tf.float32)
   
-  p1_s1 = Multiply()([Channel_attention(Spatial_attention)(p1) ,1-out1_s1])   
+  p1_s1 = Multiply()([Spatial_Attention(Channel_Attention(p1)), 1-out1_s1])   
   a2_s1 = Attention_block(p1_s1,a2)
   a3_s1 = Attention_block(a2_s1,a3)
   a4_s1 = Attention_block(a3_s1,a4)
 
   out2 = Decoder(32,'out2')(a4_s1, a3_s1, a2_s1)
 
-  p1_s2 = Multiply()([Channel_attention(Spatial_attention)(p1),1-out1_s2])   
+  p1_s2 = Multiply()([Spatial_Attention(Channel_Attention(p1)), 1-out1_s2])   
   a2_s2 = Attention_block(p1_s2,a2)
   a3_s2 = Attention_block(a2_s2,a3)
   a4_s2 = Attention_block(a3_s2,a4)
