@@ -1,10 +1,10 @@
+import random 
+import argparse
+from model import *
 from utils import *
 from dataloader import *
-from tensorflow.keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 from tensorflow.keras.optimizers import Adam
-from model import *
-import argparse
-import random 
+from tensorflow.keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 
 def set_args():
   parse = argparse.ArgumentParser()
