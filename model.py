@@ -244,14 +244,14 @@ def model(shape, args):
   out1_s1 = tf.keras.layers.Resizing(args.image_size //4, args.image_size//4)(Activation('sigmoid')(out1))
   out1_s2 = tf.cast(out1_s1 > args.semantic_boundary, dtype = tf.float32)
   
-  p1_s1 = Multiply()([Spatial_Attention(Channel_Attention(p1)), 1-out1_s1])   
+  p1_s1 = Multiply()([PASPP(p1,32), 1-out1_s1])   # Spatial_Attention(Channel_Attention(p1))
   a2_s1 = Attention_Gate(p1_s1,a2)
   a3_s1 = Attention_Gate(a2_s1,a3)
   a4_s1 = Attention_Gate(a3_s1,a4)
 
   out2 = Decoder(32,'out2')(a4_s1, a3_s1, a2_s1)
 
-  p1_s2 = Multiply()([Spatial_Attention(Channel_Attention(p1)), 1-out1_s2])   
+  p1_s2 = Multiply()([PASPP(p1,32), 1-out1_s2])    # Spatial_Attention(Channel_Attention(p1))
   a2_s2 = Attention_Gate(p1_s2,a2)
   a3_s2 = Attention_Gate(a2_s2,a3)
   a4_s2 = Attention_Gate(a3_s2,a4)
