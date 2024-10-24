@@ -1,10 +1,10 @@
-from model import *
-from tensorflow.keras.optimizers import Adam
-from dataloader import *
-from utils import *
-from PIL import Image
 import cv2
 import argparse
+from utils import *
+from model import *
+from PIL import Image
+from dataloader import *
+from tensorflow.keras.optimizers import Adam
 
 def set_args():
   parse = argparse.ArgumentParser()
