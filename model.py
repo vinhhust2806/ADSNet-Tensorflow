@@ -1,7 +1,6 @@
 import tensorflow as tf
 from keras.layers import *   
 from keras.models import Model
-import sys
 
 class ConvModule(tf.keras.layers.Layer):
     def __init__(
