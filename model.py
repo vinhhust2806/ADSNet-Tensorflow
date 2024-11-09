@@ -34,39 +34,6 @@ class ConvModule(tf.keras.layers.Layer):
         x = self.relu(x)
         return x
 
-def Spatial_Attention(inputs, ratio=8):
-    init = inputs
-    se_shape = (init.shape[1],init.shape[2],1)
-
-    se = tf.reduce_mean(inputs, axis=3)
-    se_max = tf.reduce_max(inputs, axis=3)
-    
-    se = Reshape(se_shape)(se)
-    se_max = Reshape(se_shape)(se_max)
-    
-    se = Conv2D(1, (1,1), padding='same')(tf.concat([se,se_max],-1))
-    se = Activation('sigmoid')(se)
-    return se * inputs
-
-def Channel_Attention(inputs, ratio=8):
-    init = inputs
-    channel_axis = -1
-    filters = init.shape[channel_axis]
-    se_shape = (1, 1, filters)
-    
-    se = GlobalAveragePooling2D()(init)
-    se = Reshape(se_shape)(se)
-    se = Dense(filters // ratio, activation='relu', kernel_initializer='he_normal', use_bias=False)(se)
-    se = Dense(filters, kernel_initializer='he_normal', use_bias=False)(se)
-    
-    se_max = GlobalMaxPooling2D()(init)
-    se_max = Reshape(se_shape)(se_max)
-    se_max = Dense(filters // ratio, activation='relu', kernel_initializer='he_normal', use_bias=False)(se_max)
-    se_max = Dense(filters, kernel_initializer='he_normal', use_bias=False)(se_max)
-    
-    x = Multiply()([init, Activation('sigmoid')(se+se_max)])
-    return x
-
 def Attention_Gate(g, x):
     filters = x.shape[-1]
    
@@ -244,14 +211,14 @@ def model(shape, args):
   out1_s1 = tf.keras.layers.Resizing(args.image_size //4, args.image_size//4)(Activation('sigmoid')(out1))
   out1_s2 = tf.cast(out1_s1 > args.semantic_boundary, dtype = tf.float32)
   
-  p1_s1 = Multiply()([PASPP(p1,32), 1-out1_s1])   # Spatial_Attention(Channel_Attention(p1))
+  p1_s1 = Multiply()([PASPP(p1,32), 1-out1_s1])   
   a2_s1 = Attention_Gate(p1_s1,a2)
   a3_s1 = Attention_Gate(a2_s1,a3)
   a4_s1 = Attention_Gate(a3_s1,a4)
 
   out2 = Decoder(32,'out2')(a4_s1, a3_s1, a2_s1)
 
-  p1_s2 = Multiply()([PASPP(p1,32), 1-out1_s2])    # Spatial_Attention(Channel_Attention(p1))
+  p1_s2 = Multiply()([PASPP(p1,32), 1-out1_s2])  
   a2_s2 = Attention_Gate(p1_s2,a2)
   a3_s2 = Attention_Gate(a2_s2,a3)
   a4_s2 = Attention_Gate(a3_s2,a4)
